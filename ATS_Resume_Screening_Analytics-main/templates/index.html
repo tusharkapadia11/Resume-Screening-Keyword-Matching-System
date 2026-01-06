@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATS Resume Analyzer</title>
+</head>
+<body>
+    <h1>ATS Resume Parser & Analyzer</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".pdf,.docx" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    {% if score is not none %}
+        <p><strong>ATS Score:</strong> {{ score }}%</p>
+    {% endif %}
+</body>
+</html>
