@@ -1,63 +1,104 @@
+# 📄 ATS Resume Screening & Analytics
+
+## AI-powered Resume Screening Using NLP to Rank Candidates Against Job Descriptions
+
+An Applicant Tracking System (ATS) that automatically evaluates resumes against job descriptions using Natural Language Processing (NLP), helping recruiters identify the most relevant candidates quickly and consistently.
 
 ---
 
-# ATS Resume Screening & Analytics
+# Business Context
 
-## Overview
-
-An AI-powered **Applicant Tracking System (ATS)** that automates resume screening using **NLP and Machine Learning**. It evaluates resumes against job descriptions and generates match scores, skill insights, and candidate rankings.
+Recruiters often receive hundreds of resumes for a single position, making manual screening slow and inconsistent. This project was developed to automate the initial screening process by comparing candidate resumes with job descriptions and generating objective relevance scores. The system assists recruiters in identifying qualified candidates while reducing manual effort.
 
 ---
 
-## Problem Statement
+# Dataset
 
-Manual resume screening is time-consuming, inconsistent, and difficult to scale.
+The application processes two user-provided inputs rather than relying on a fixed dataset.
+
+| Source          | Description                                      |
+| --------------- | ------------------------------------------------ |
+| Resume          | PDF or text resume uploaded by the user          |
+| Job Description | Job requirements entered or uploaded by the user |
+
+### Data Characteristics
+
+* Grain: One candidate resume
+* Input Type: Unstructured text
+* Output: Resume match score, extracted skills, candidate ranking
+* Domain: Recruitment / Human Resources
 
 ---
 
-## Solution
+# Methodology
 
-Automated ATS that analyzes resumes and shortlists candidates based on relevance to job descriptions.
+The application follows a Natural Language Processing pipeline to measure resume relevance.
+
+1. Resume parsing and text extraction
+2. Text preprocessing
+
+   * Lowercasing
+   * Stop-word removal
+   * Tokenization
+3. TF-IDF Vectorization
+4. Cosine Similarity calculation
+5. Resume match score generation
+6. Candidate ranking based on similarity
+
+### Why TF-IDF?
+
+TF-IDF was selected because it is lightweight, interpretable, and performs well for document similarity tasks. Compared to deep learning approaches, it requires significantly less computational power while providing reliable matching for keyword-driven recruitment scenarios.
 
 ---
 
-## Key Features
+# Key Features
 
 * Resume parsing
-* Job–resume matching
-* Resume match score (%)
+* Job description matching
+* Resume similarity score
 * Skill extraction
 * Candidate ranking
+* Interactive Streamlit interface
 
 ---
 
-## Tech Stack
+# Sample Output
 
-* **Language:** Python
-* **ML/NLP:** Scikit-learn, TF-IDF
-* **Data:** Pandas, NumPy
-* **Web:** Flask / Streamlit
+The system generates:
 
----
-
-## Workflow
-
-Resume & Job Description → Text Preprocessing → TF-IDF → Similarity Calculation → Analytics Output
+* Resume Match Score (%)
+* Matching Skills
+* Missing Skills
+* Candidate Ranking
+* Resume Relevance Summary
 
 ---
 
-## Results
+# Recommendations
 
-* Resume match percentage
-* Skill match insights
-* Ranked candidate list
+This application can help recruitment teams:
+
+* Reduce manual resume screening time.
+* Improve consistency during initial candidate shortlisting.
+* Quickly identify resumes matching required technical skills.
+* Prioritize high-scoring candidates for further evaluation.
 
 ---
 
-## Project Structure
+# Limitations & Assumptions
+
+* Matching quality depends on the quality of the job description.
+* TF-IDF focuses on textual similarity and may not capture semantic meaning.
+* The system does not evaluate candidate experience, interview performance, or cultural fit.
+* Skill extraction is based on textual content present in the uploaded resume.
+
+---
+
+# Project Structure
 
 ```text
 ATS_Resume_Screening_Analytics-main/
+│
 ├── app.py
 ├── templates/
 ├── static/
@@ -68,32 +109,40 @@ ATS_Resume_Screening_Analytics-main/
 
 ---
 
-## Steps to Run the Project
+# Installation
 
 ```bash
-# 1. Clone the repository
 git clone <repository-url>
 
-# 2. Navigate to the project folder
 cd ATS_Resume_Screening_Analytics-main
 
-# 3. Create virtual environment (optional)
 python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
 
-# 4. Install dependencies
+# Windows
+venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
 
-# 5. Run the application
-python app.py
+# Run the application
+streamlit run app.py
 ```
 
-Open the app in your browser (usually `http://127.0.0.1:5000`).
+---
+
+# Technologies Used
+
+* Python
+* Streamlit
+* Scikit-learn
+* Pandas
+* NumPy
+* TF-IDF
+* Cosine Similarity
+* NLP
 
 ---
 
-## Tags
+# License
 
-`ATS` `NLP` `MachineLearning` `ResumeScreening` `AIRecruitment`
-
----
+This project is intended for educational and portfolio purposes.
